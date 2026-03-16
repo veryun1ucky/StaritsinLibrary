@@ -220,11 +220,7 @@ namespace StartitsinWPF
             ApplySearchFilter(SearchBox.Text);
         }
 
-        private async void Refresh_Click(object sender, RoutedEventArgs e)
-        {
-            await LoadPartnersAsync();
-        }
-
+      
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
