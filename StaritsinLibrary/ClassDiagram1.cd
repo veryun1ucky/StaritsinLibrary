@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="StaritsinLibrary.Models.Partner">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAQCAAAAAAAAAABABAAAAAAAEGAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Partner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Models.PartnerSale">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>NAACAAAEAAAUAAAAAAAAAAAAAAAAAAAAAAAAoAEAAAg=</HashCode>
+      <FileName>Models\PartnerSale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Models.PartnerType">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PartnerType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Models.Product">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAAIAAABAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Models.SaleCalculationResultDTO">
+    <Position X="12" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\SaleCalculationResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Models.SaleEditModel">
+    <Position X="16.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAEAAAEAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAA=</HashCode>
+      <FileName>Models\SaleEditModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Models.SaleListItemDTO">
+    <Position X="18.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>NAACAAAEAAAUAAAAAAAAAAAAAAAAAAAAAAAAoAkIAAA=</HashCode>
+      <FileName>Models\SaleListItemDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Models.SalePartnerLookupDTO">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SaleLookUpDTOs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Models.SaleProductLookupDTO">
+    <Position X="13.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\SaleLookUpDTOs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Repositories.PartnerRepository">
+    <Position X="9" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEACAAAAAAAAAAAAAACAAEAAAAAIAgAAAACAAAAIIA=</HashCode>
+      <FileName>Repositories\PartnerRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Services.DiscountService">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\DiscountService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.Services.SaleService">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIACACAAAAIAAAAAAACABAEAAAAgAQCAIgAAAA=</HashCode>
+      <FileName>Services\SaleService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.StaritsinDbContextFactory">
+    <Position X="15.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAEAAAAAAAAAAAIAAAAAACAAAA=</HashCode>
+      <FileName>StaritsinAppDbContextFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StaritsinLibrary.StaritsinDbContext">
+    <Position X="5.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAMAAAAAEAAAAAAAAAAAQ=</HashCode>
+      <FileName>StaritsinDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
