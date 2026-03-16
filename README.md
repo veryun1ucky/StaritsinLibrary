@@ -1,4 +1,4 @@
-# StaritsinPartners
+# StaritsinLibrary
 
 Настольное приложение на WPF + .NET + Entity Framework Core + PostgreSQL для учёта партнёров и продаж.
 
@@ -23,9 +23,9 @@
 
 ## Структура проекта
 
-- `StaritsinPartners.WPF` — пользовательский интерфейс
-- `StaritsinPartners.Domain` — сущности, контекст БД, репозиторий, сервисы, бизнес-логика
-- `StaritsinPartners.Tests` — модульные тесты
+- `StaritsinWPF` — пользовательский интерфейс
+- `StaritsinLibrary` — сущности, контекст БД, репозиторий, сервисы, бизнес-логика
+- `StaritsinTests` — модульные тесты
 
 ## Настройка базы данных
 
@@ -43,7 +43,7 @@ CREATE DATABASE staritsin OWNER app;
 Либо создать схему и таблицы вручную с помощью скрипта:
 
 ```
-psql -U app -d staritsin -f StaritsinDB.sql
+psql -U app -d staritsin -f backup_staritsin.sql
 ```
 
 ## Параметры подключения
@@ -67,7 +67,7 @@ Host=localhost;Port=5432;Database=staritsin;Username=app;Password=123456789
 Открыть решение в Visual Studio 2022 и запустить проект:
 
 ```
-StaritsinPartners.WPF
+StaritsinWPF
 ```
 
 ## Запуск тестов
@@ -91,4 +91,4 @@ dotnet test
   - базовая цена товара,
   - скидка партнёра,
   - цена продажи на момент оформления;
-- WPF-проект не содержит прямых зависимостей от Entity Framework Core — вся работа с БД инкапсулирована в `StaritsinPartners.Domain`.
+- WPF-проект не содержит прямых зависимостей от Entity Framework Core — вся работа с БД инкапсулирована в `StaritsinLibrary`.
