@@ -2,12 +2,10 @@
 using StaritsinLibrary.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StaritsinLibrary
 {
+
     public class StaritsinDbContextFactory
     {
         private readonly string _connectionString;
@@ -16,7 +14,6 @@ namespace StaritsinLibrary
         {
             _connectionString = connectionString;
         }
-
 
         public StaritsinDbContext CreateContext()
         {
@@ -32,16 +29,23 @@ namespace StaritsinLibrary
             using (var context = CreateContext())
             {
                 context.Database.ExecuteSqlRaw("CREATE SCHEMA IF NOT EXISTS app");
+            }
 
-                bool wasCreated = context.Database.EnsureCreated();
+            bool wasCreated;
+            using (var context = CreateContext())
+            {
+                wasCreated = context.Database.EnsureCreated();
+            }
 
-                if (wasCreated)
+            if (wasCreated)
+            {
+                using (var context = CreateContext())
                 {
                     SeedInitialData(context);
                 }
-
-                return wasCreated;
             }
+
+            return wasCreated;
         }
 
         private static void SeedInitialData(StaritsinDbContext context)
@@ -58,10 +62,10 @@ namespace StaritsinLibrary
 
             var products = new List<Product>
             {
-                new Product { ProductName = "Паркет тип 1",     Unit = "м²" },
-                new Product { ProductName = "Паркет тип 2",     Unit = "м²" },
-                new Product { ProductName = "Ламинат стандарт", Unit = "м²" },
-                new Product { ProductName = "Ламинат премиум",  Unit = "м²" }
+                new Product { ProductName = "Паркет тип 1",     Unit = "м²", Price = 1200.00m },
+                new Product { ProductName = "Паркет тип 2",     Unit = "м²", Price = 1500.00m },
+                new Product { ProductName = "Ламинат стандарт", Unit = "м²", Price =  800.00m },
+                new Product { ProductName = "Ламинат премиум",  Unit = "м²", Price = 1100.00m }
             };
             context.Products.AddRange(products);
             context.SaveChanges();
@@ -70,7 +74,7 @@ namespace StaritsinLibrary
             {
                 new Partner
                 {
-                    PartnerTypeId = partnerTypes[1].Id,
+                    PartnerTypeId = partnerTypes[1].Id,  
                     CompanyName   = "СтройМастер",
                     DirectorName  = "Иванов Иван Иванович",
                     Email         = "info@stroymaster.ru",
@@ -80,7 +84,7 @@ namespace StaritsinLibrary
                 },
                 new Partner
                 {
-                    PartnerTypeId = partnerTypes[0].Id,
+                    PartnerTypeId = partnerTypes[0].Id, 
                     CompanyName   = "ПаркетПлюс",
                     DirectorName  = "Петров Пётр Петрович",
                     Email         = "info@parketplus.ru",
@@ -90,7 +94,7 @@ namespace StaritsinLibrary
                 },
                 new Partner
                 {
-                    PartnerTypeId = partnerTypes[2].Id,
+                    PartnerTypeId = partnerTypes[2].Id,  
                     CompanyName   = "ДомДекор",
                     DirectorName  = "Сидоров Сидор Сидорович",
                     Email         = "info@domdecor.ru",
@@ -102,46 +106,59 @@ namespace StaritsinLibrary
             context.Partners.AddRange(partners);
             context.SaveChanges();
 
+
             var sales = new List<PartnerSale>
             {
-                new PartnerSale
-                {
-                    PartnerId = partners[0].Id,
-                    ProductId = products[0].Id,
-                    Quantity  = 15000,
-                    SaleDate  = new System.DateTime(2024, 3, 15)
-                },
-                new PartnerSale
-                {
-                    PartnerId = partners[0].Id,
-                    ProductId = products[2].Id,
-                    Quantity  = 8000,
-                    SaleDate  = new System.DateTime(2024, 7, 20)
-                },
-                new PartnerSale
-                {
-                    PartnerId = partners[1].Id,
-                    ProductId = products[1].Id,
-                    Quantity  = 62000,
-                    SaleDate  = new System.DateTime(2024, 1, 10)
-                },
-                new PartnerSale
-                {
-                    PartnerId = partners[2].Id,
-                    ProductId = products[3].Id,
-                    Quantity  = 3000,
-                    SaleDate  = new System.DateTime(2024, 11, 5)
-                },
-                new PartnerSale
-                {
-                    PartnerId = partners[2].Id,
-                    ProductId = products[0].Id,
-                    Quantity  = 45000,
-                    SaleDate  = new System.DateTime(2025, 2, 18)
-                }
+                MakeSale(partners[0].Id, products[0].Id,
+                    quantity: 15000, date: new DateTime(2024, 3, 15),
+                    basePrice: 1200.00m, discountPercent: 0),
+
+                MakeSale(partners[0].Id, products[2].Id,
+                    quantity: 8000, date: new DateTime(2024, 7, 20),
+                    basePrice: 800.00m, discountPercent: 5),
+ 
+                MakeSale(partners[1].Id, products[1].Id,
+                    quantity: 62000, date: new DateTime(2024, 1, 10),
+                    basePrice: 1500.00m, discountPercent: 0),
+ 
+                MakeSale(partners[2].Id, products[3].Id,
+                    quantity: 3000, date: new DateTime(2024, 11, 5),
+                    basePrice: 1100.00m, discountPercent: 0),
+ 
+                MakeSale(partners[2].Id, products[0].Id,
+                    quantity: 45000, date: new DateTime(2025, 2, 18),
+                    basePrice: 1200.00m, discountPercent: 0)
             };
             context.PartnerSales.AddRange(sales);
             context.SaveChanges();
+        }
+
+
+        private static PartnerSale MakeSale(
+            int partnerId, int productId,
+            int quantity, DateTime date,
+            decimal basePrice, int discountPercent)
+        {
+            decimal unitPrice = Math.Round(
+                basePrice * (1m - discountPercent / 100m), 2,
+                MidpointRounding.AwayFromZero);
+
+            decimal totalAmount = Math.Round(
+                unitPrice * quantity, 2,
+                MidpointRounding.AwayFromZero);
+
+            return new PartnerSale
+            {
+                PartnerId = partnerId,
+                ProductId = productId,
+                Quantity = quantity,
+                SaleDate = date,
+                BasePrice = basePrice,
+                DiscountPercent = discountPercent,
+                UnitPrice = unitPrice,
+                TotalAmount = totalAmount,
+                Comment = null
+            };
         }
     }
 }
